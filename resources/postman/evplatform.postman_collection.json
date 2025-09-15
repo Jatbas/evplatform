@@ -1,0 +1,582 @@
+{
+	"info": {
+		"_postman_id": "dceaa685-fc04-4ee5-82c5-060425c85d9b",
+		"name": "evplatform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5542600"
+	},
+	"item": [
+		{
+			"name": "companies",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies",
+								"woKrxX2E3daG1Dd48gpn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get company stations",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies/g6rx5oQW7W4qnO90PJwA/stations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies",
+								"g6rx5oQW7W4qnO90PJwA",
+								"stations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"company 6\",\n    \"website\": \"\",\n    \"email\": \"jatbas@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"company 222\",\n    \"website\": \"http://test-123-com\",\n    \"email\": \"jatbas@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies",
+								"woKrxX2E3daG1Dd48gpn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"companies",
+								"woKrxX2E3daG1Dd48gpn"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company-associations",
+			"item": [
+				{
+					"name": "get company children",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/company-associations/g6rx5oQW7W4qnO90PJwA/children",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"company-associations",
+								"g6rx5oQW7W4qnO90PJwA",
+								"children"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get company parent",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/company-associations/ymelPNbOqj57xAkLR41v/parent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"company-associations",
+								"ymelPNbOqj57xAkLR41v",
+								"parent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parent_company_id\": \"ymelPNbOqj57xAkLR41v\",\n    \"child_company_id\": \"1ZKvwQyg3LP3Wb24N8kz\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/company-associations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"company-associations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/company-associations/woKrxX2E3daG1Dd48gpn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"company-associations",
+								"woKrxX2E3daG1Dd48gpn"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "station-types",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/station-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"station-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/station-types/aXYP9g20qp0qROEe4AJz",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"station-types",
+								"aXYP9g20qp0qROEe4AJz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Station type 100 to delete\",\n    \"max_power\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/station-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"station-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Station type 100 to delete update\",\n    \"max_power\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/station-types/e8Rx0vBNGmZ7klWrnyEa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"station-types",
+								"e8Rx0vBNGmZ7klWrnyEa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/station-types/e8Rx0vBNGmZ7klWrnyEa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"station-types",
+								"e8Rx0vBNGmZ7klWrnyEa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stations",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/stations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"stations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/stations/g6rx5oQW7W4qnO90PJwA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"stations",
+								"g6rx5oQW7W4qnO90PJwA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company_id\": \"g6rx5oQW7W4qnO90PJwA\",\n    \"station_type_id\": \"g6rx5oQW7W4qnO90PJwA\",\n    \"name\": \"station 7\",\n    \"location\": [33.58220, 12.83170]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/stations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"stations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Station 8\",\n    \"location\": [33.58220, 12.83170]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/stations/knrdAKJ5GkWGZeVjP8zo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"stations",
+								"knrdAKJ5GkWGZeVjP8zo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/evplatform/stations/e8Rx0vBNGmZ7klWrnyEa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"stations",
+								"e8Rx0vBNGmZ7klWrnyEa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "simulation",
+			"item": [
+				{
+					"name": "simulation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"script\": \"Begin\\nStart station 1\\nWait 5\\nStart station 2\\nWait 10\\nStart station all\\nWait 10\\nStop station 2\\nWait 10\\nStop station 3\\nWait 5\\nStop station all\\nEnd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/evplatform/simulation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"evplatform",
+								"simulation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
