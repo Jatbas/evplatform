@@ -2,6 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+
 import { CompanyModule } from '@companies/company/company.module';
 import { CompanyAssociationsModule } from '@companies/company-associations/company-associations.module';
 import { StationTypesModule } from '@stations/station-type/station-type.module';
@@ -32,6 +36,21 @@ import { SimulationModule } from '@simulation/simulation.module';
                 synchronize: false,
                 legacySpatialSupport: false
             }),
+        }),
+
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
+            autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // Auto-generates schema
+            playground: false, // true to enables GraphQL Playground
+            formatError: (error) => {
+
+                return {
+                    result: error?.extensions?.result,
+                    code: error?.extensions?.code,
+                    message: error.message,
+                };
+            },
+            path: '/evplatform/graphql',
         }),
 
         CompanyModule,

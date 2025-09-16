@@ -21,6 +21,7 @@ import { CompanyUpdateReqDto } from '@companies/company/dtos/company-update-req.
 export class CompanyController
 {
     constructor(
+
         private readonly companyService: CompanyService,
 
         @Inject('HashidsLib')

@@ -8,6 +8,8 @@ import { Station } from '@stations/entities/station.entity';
 import { CompanyController } from '@companies/company/company.controller';
 import { CompanyService } from '@companies/company/company.service';
 
+import { CompanyResolver } from '@companies/company/graphql/company.resolver';
+
 import { HashidsLib } from '@libs/hashids/hashids.lib';
 import { UtilsLib } from '@libs/utils/utils.lib';
 
@@ -44,6 +46,7 @@ import { CompanyDelete } from '@companies/company/repository/delete/company-dele
     providers: [
 
         CompanyService,
+        CompanyResolver,
 
         {
             provide: 'HashidsLib',
