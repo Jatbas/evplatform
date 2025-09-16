@@ -41,7 +41,7 @@ It allows for creating and managing companies, associating parent/child companie
 ---
 
 
-## Endpoints
+## REST API
 
 | **Resource**             | **Method** | **Endpoint**                                            | **Description**                                         |
 |--------------------------|------------|---------------------------------------------------------|---------------------------------------------------------|
@@ -71,6 +71,33 @@ It allows for creating and managing companies, associating parent/child companie
 ---
 
 
+## GraphQL API
+
+In addition to the REST endpoints, this project also exposes a GraphQL API.
+
+- **Endpoint:** `/evplatform/graphql`
+- **Playground:** Disabled. Use the provided Postman collection or another GraphQL client.
+
+### Queries
+
+| Operation            | Arguments                         | Description                                |
+|----------------------|-----------------------------------|--------------------------------------------|
+| `getCompanies`       | `id` (optional, ID)              | Retrieve all companies or a single company by ID |
+| `getCompanyStations` | `id` (required, ID)              | Retrieve all stations for a given company  |
+
+### Mutations
+
+| Operation        | Arguments                                    | Description                     |
+|------------------|----------------------------------------------|---------------------------------|
+| `createCompany`  | `input` (CompanyCreateReqDto)                | Create a new company            |
+| `updateCompany`  | `id` (ID), `input` (CompanyUpdateReqDto)     | Update an existing company      |
+| `deleteCompany`  | `id` (ID)                                    | Delete a company by ID          |
+
+
+---
+
+## Installation
+
 ### 1. Install the Nest CLI (if needed)
 ```bash
     npm install -g @nestjs/cli
@@ -88,6 +115,7 @@ It allows for creating and managing companies, associating parent/child companie
     cd evplatform
 
     npm install @nestjs/typeorm typeorm mysql2 hashids class-validator class-transformer @nestjs/config
+    npm install @nestjs/graphql @nestjs/apollo graphql graphql-type-json apollo-server-express
     npm install --save-dev @types/geojson
 ```
 

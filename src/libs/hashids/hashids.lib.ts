@@ -34,6 +34,10 @@ export class HashidsLib implements HashidsLibInterface
 
     public decode(hash: string): number | null
     {
+        if (isNaN(Number(hash)) === false)
+        {
+            return Number(hash);
+        }
         const [id] = this.hashids.decode(hash);
 
         return ((typeof id === 'number') ? id : null);

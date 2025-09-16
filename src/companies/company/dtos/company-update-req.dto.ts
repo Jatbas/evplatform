@@ -1,9 +1,12 @@
+import { InputType, Field } from '@nestjs/graphql';
 import { MaxLength, IsOptional, IsString, IsUrl, IsEmail} from 'class-validator';
 import { Transform } from 'class-transformer';
 
 
+@InputType()
 export class CompanyUpdateReqDto
 {
+    @Field()
     @Transform(({ value }) => value === '' ? null : value)
     @IsString()
     @MaxLength(500, { message: 'Company name must be at most 500 characters' })
@@ -11,6 +14,7 @@ export class CompanyUpdateReqDto
     public readonly name: string;
 
 
+    @Field({ nullable: true })
     @Transform(({ value }) => value === '' ? null : value)
     @IsUrl({}, { message: 'Invalid website' })
     @MaxLength(250, { message: 'Company website must be at most 250 characters' })
@@ -18,6 +22,7 @@ export class CompanyUpdateReqDto
     public readonly website: string;
 
 
+    @Field({ nullable: true })
     @Transform(({ value }) => value === '' ? null : value)
     @IsEmail({}, { message: 'Invalid email' })
     @MaxLength(250, { message: 'Company email must be at most 250 characters' })
