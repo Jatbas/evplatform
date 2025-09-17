@@ -1,6 +1,7 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { CompanyDto } from '@companies/company/dtos/company.dto';
 import { HashidsLibInterface } from '@libs/hashids/hashids.interface';
+import { CompanyStationResType } from '@companies/company/graphql/types/company-station-res.type';
 
 
 @ObjectType()
@@ -29,6 +30,11 @@ export class CompanyResType
 
     @Field(() => Boolean)
     has_parent_company!: Boolean;
+
+
+    // Stations relation
+    @Field(() => [CompanyStationResType], { nullable: true })
+    stations?: CompanyStationResType[]
 
 
     /***/

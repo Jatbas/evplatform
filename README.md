@@ -82,7 +82,7 @@ In addition to the REST endpoints, this project also exposes a GraphQL API.
 
 | Operation            | Arguments                         | Description                                |
 |----------------------|-----------------------------------|--------------------------------------------|
-| `getCompanies`       | `id` (optional, ID)              | Retrieve all companies or a single company by ID |
+| `getCompanies`       | `id` (optional, ID)              | Retrieve all companies or a single company by ID. Supports nested stations queries |
 | `getCompanyStations` | `id` (required, ID)              | Retrieve all stations for a given company  |
 
 ### Mutations

@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
+import { Resolver, Query, ResolveField, Parent, Mutation, Args, ID } from '@nestjs/graphql';
 
 import { ParseAndDecodeIdPipe } from '@common/pipes/parse-and-decode-id.pipe';
 import { ParseAndDecodeIdUndefinedPipe } from '@common/pipes/parse-and-decode-id-undefined.pipe';
@@ -14,7 +14,7 @@ import { CompanyCreateReqDto } from '@companies/company/dtos/company-create-req.
 import { CompanyUpdateReqDto } from '@companies/company/dtos/company-update-req.dto';
 
 
-@Resolver()
+@Resolver(CompanyResType)
 export class CompanyResolver
 {
     constructor(
@@ -41,10 +41,12 @@ export class CompanyResolver
     /***/
 
 
-    @Query(() => [CompanyStationResType])
-    async getCompanyStations(@Args('id', { type: () => ID }, ParseAndDecodeIdPipe) id?: any): Promise<CompanyStationResType[]>
+    @ResolveField(() => [CompanyStationResType])
+    async stations(@Parent() company: CompanyResType): Promise<CompanyStationResType[]>
     {
-        const stations = await this.companyService.getCompanyStations(id);
+        const companyId = Number(this.hashidsLib.decode(company.id));
+
+        const stations = await this.companyService.getCompanyStations(companyId);
 
         return stations.map(station => new CompanyStationResType(station, this.hashidsLib));
     }
