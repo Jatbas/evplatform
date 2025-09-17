@@ -5,7 +5,7 @@ import request from 'supertest';
 import { AppModule } from '../../../src/app.module';
 
 
-describe('StationController (e2e)', () => {
+describe('StationController (REST e2e)', () => {
 
     let app: INestApplication;
 
@@ -13,7 +13,7 @@ describe('StationController (e2e)', () => {
     beforeAll(async () => {
 
         const moduleFixture: TestingModule = await Test.createTestingModule({
-        imports: [AppModule],
+            imports: [AppModule],
         }).compile();
 
         app = moduleFixture.createNestApplication();
