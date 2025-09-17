@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dceaa685-fc04-4ee5-82c5-060425c85d9b",
+		"_postman_id": "ccd93316-3b85-42bc-afe1-9547e67cb760",
 		"name": "evplatform",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5542600"
@@ -10,159 +10,385 @@
 			"name": "companies",
 			"item": [
 				{
-					"name": "get all",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get by id",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies",
-								"woKrxX2E3daG1Dd48gpn"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get company stations",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies/g6rx5oQW7W4qnO90PJwA/stations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies",
-								"g6rx5oQW7W4qnO90PJwA",
-								"stations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"company 6\",\n    \"website\": \"\",\n    \"email\": \"jatbas@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "graphql",
+					"item": [
+						{
+							"name": "get all",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query($id: ID!)\n{\n    getCompanies(id: $id)\n    {\n        id\n        name\n        website\n        email\n        created_at\n        updated_at\n        has_sub_companies\n        has_parent_company\n    }\n}",
+										"variables": "{\n  \"id\": \"\"\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"company 222\",\n    \"website\": \"http://test-123-com\",\n    \"email\": \"jatbas@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "get by id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query($id: ID!)\n{\n    getCompanies(id: $id)\n    {\n        id\n        name\n        website\n        email\n        created_at\n        updated_at\n        has_sub_companies\n        has_parent_company\n        stations\n        {\n            id\n            name\n            reference\n            location\n            station_type\n        }\n    }\n}",
+										"variables": "{\n  \"id\": \"g6rx5oQW7W4qnO90PJwA\"\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies",
-								"woKrxX2E3daG1Dd48gpn"
-							]
+						{
+							"name": "get company stations",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query($id: ID!)\n{\n    getCompanyStations(id: $id)\n    {\n        id\n        name\n        reference\n        location\n        station_type\n        company\n        created_at\n        updated_at\n    }\n}",
+										"variables": "{\n  \"id\": \"g6rx5oQW7W4qnO90PJwA\"\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation ($input: CompanyCreateReqDto!)\n{\n    createCompany(input: $input)\n    {\n        name\n        website\n        email\n    }\n}",
+										"variables": "{\n    \"input\": {\n        \"name\": \"Company 7\",\n        \"website\": \"https://test.com\",\n        \"email\": \"test@test.com\"\n    }\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation ($id: ID!, $input: CompanyUpdateReqDto!)\n{\n    updateCompany(id: $id, input: $input)\n    {\n        name\n        website\n        email\n    }\n}",
+										"variables": "{\n    \"id\": \"aXYP9g20qp0qROEe4AJz\",\n    \"input\": {\n        \"name\": \"Company 7\",\n        \"website\": \"https://test.com\",\n        \"email\": \"test@test.com\"\n    }\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation ($id: ID!)\n{\n    deleteCompany(id: $id)\n}",
+										"variables": "{\n    \"id\": \"aXYP9g20qp0qROEe4AJz\"\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"graphql"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "delete",
-					"request": {
-						"auth": {
-							"type": "noauth"
+					"name": "rest",
+					"item": [
+						{
+							"name": "get all",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies"
+									]
+								}
+							},
+							"response": []
 						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"evplatform",
-								"companies",
-								"woKrxX2E3daG1Dd48gpn"
-							]
+						{
+							"name": "get by id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies",
+										"woKrxX2E3daG1Dd48gpn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get company stations",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies/g6rx5oQW7W4qnO90PJwA/stations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies",
+										"g6rx5oQW7W4qnO90PJwA",
+										"stations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"company 6\",\n    \"website\": \"\",\n    \"email\": \"jatbas@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"company 222\",\n    \"website\": \"http://test-123-com\",\n    \"email\": \"jatbas@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies",
+										"woKrxX2E3daG1Dd48gpn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/evplatform/companies/woKrxX2E3daG1Dd48gpn",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"evplatform",
+										"companies",
+										"woKrxX2E3daG1Dd48gpn"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
