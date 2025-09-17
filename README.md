@@ -24,6 +24,8 @@ It allows for creating and managing companies, associating parent/child companie
 - **DTOs**: Data Transfer Objects (DTOs) are used for all input validation, request/response shaping, and to decouple internal data models from public API contracts.
 - **Value Objects**: Important business domain values (such as company name, email, geo-coordinates, etc.) are encapsulated in value objects, ensuring validation and immutability at the domain layer.
 - **TypeORM**: All database access uses TypeORM with repository and entity patterns. Spatial (geo) data is handled via MySQL spatial types.
+- **GraphQL**: In addition to REST, the project supports GraphQL queries and mutations, including nested field resolvers for relations.
+- **Pub/Sub**: In-memory event bus used to decouple actions. For example, a `company.created` event can trigger logging and email subscribers independently.
 - **Testing**: Both unit and e2e tests are present. Value objects, service logic, and selected endpoints are covered.
 
 ---
@@ -117,6 +119,7 @@ In addition to the REST endpoints, this project also exposes a GraphQL API.
     npm install @nestjs/typeorm typeorm mysql2 hashids class-validator class-transformer @nestjs/config
     npm install @nestjs/graphql @nestjs/apollo graphql graphql-type-json apollo-server-express
     npm install --save-dev @types/geojson
+    npm install @nestjs/event-emitter
 ```
 
 
@@ -157,6 +160,9 @@ $ npm run test:e2e -- --detectOpenHandles --forceExit
 
 - **Authentication & Authorization:**
   Add JWT or OAuth authentication to secure API endpoints and support role-based access control.
+
+- **Pub/Sub:**
+  Replace the in-memory event bus with a distributed Pub/Sub system (e.g., Redis, Kafka) for durability, scalability, and cross-service communication.
 
 
 ## Resources

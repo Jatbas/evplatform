@@ -14,19 +14,19 @@ import { CompanyStationResolver } from '@companies/company/graphql/company-stati
 import { HashidsLib } from '@libs/hashids/hashids.lib';
 import { UtilsLib } from '@libs/utils/utils.lib';
 
+import { CompanyCreateSetLogsSubscriber } from '@companies/company/events/subscribers/company-create-set-logs.subscriber';
+import { CompanyCreateSendEmailSubscriber } from '@companies/company/events/subscribers/company-create-send-email.subscriber';
+
 import { CompanyRepository } from '@companies/company/repository/company.repository';
 import { CompanyExistenceChecker } from '@common/repository/company/company-existence-checker';
 import { CompanyGet } from '@companies/company/repository/get/company-get';
 import { CompanyHasChildren } from '@companies/company/repository/get/company-has-children';
 import { CompanyHasParent } from '@companies/company/repository/get/company-has-parent';
 import { CompanyGetChildren } from '@companies/company-associations/repository/get/company-get-children';
-
 import { CompanyGetStations } from '@companies/company/repository/get-stations/company-get-stations';
-
 import { CompanyCreate } from '@companies/company/repository/create/company-create';
-
+import { CompanyCreatePublisher } from '@companies/company/events/publishers/company-create.publisher';
 import { CompanyUpdate } from '@companies/company/repository/update/company-update';
-
 import { CompanyDelete } from '@companies/company/repository/delete/company-delete';
 
 
@@ -49,6 +49,9 @@ import { CompanyDelete } from '@companies/company/repository/delete/company-dele
         CompanyService,
         CompanyResolver,
         CompanyStationResolver,
+
+        CompanyCreateSetLogsSubscriber,
+        CompanyCreateSendEmailSubscriber,
 
         {
             provide: 'HashidsLib',
@@ -94,6 +97,10 @@ import { CompanyDelete } from '@companies/company/repository/delete/company-dele
         {
             provide: 'CompanyCreate',
             useClass: CompanyCreate
+        },
+        {
+            provide: 'CompanyCreatePublisher',
+            useClass: CompanyCreatePublisher
         },
 
         {

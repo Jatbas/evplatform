@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 import { CompanyModule } from '@companies/company/company.module';
 import { CompanyAssociationsModule } from '@companies/company-associations/company-associations.module';
@@ -52,6 +55,8 @@ import { SimulationModule } from '@simulation/simulation.module';
             },
             path: '/evplatform/graphql',
         }),
+
+        EventEmitterModule.forRoot(),
 
         CompanyModule,
         CompanyAssociationsModule,

@@ -4,6 +4,7 @@ import { InvalidValueObjectError } from '@common/errors/invalid-value-object.err
 
 import { CompanyServiceInterface } from '@companies/company/interfaces/company-service.interface';
 import { CompanyRepositoryInterface } from '@companies/company/interfaces/company-repository.interface';
+import { CompanyCreatePublisherInterface } from '@companies/company/interfaces/company-create-publisher.interface';
 
 import { CompanyDto } from '@companies/company/dtos/company.dto';
 
@@ -22,7 +23,13 @@ export class CompanyService implements CompanyServiceInterface
     constructor(
 
         @Inject('CompanyRepository')
-        private readonly companyRepository: CompanyRepositoryInterface
+        private readonly companyRepository: CompanyRepositoryInterface,
+
+        @Inject('CompanyCreatePublisher')
+        private readonly companyCreatePublisher: CompanyCreatePublisherInterface
+
+
+
     ) {}
 
 
@@ -70,7 +77,15 @@ export class CompanyService implements CompanyServiceInterface
         }
 
 
-        return await this.companyRepository.create(dto);
+        // Create company
+        const company = await this.companyRepository.create(dto);
+
+
+        // Dispatch event
+        this.companyCreatePublisher.exec(company[0]);
+
+
+        return company;
     }
 
 
