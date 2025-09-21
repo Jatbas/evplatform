@@ -27,7 +27,7 @@ export class Simulation implements SimulationInterface
     /***/
 
 
-    public exec(state: SimulationStateInterface, commands: SimulationCommandType[], registerWaitCommand?: Boolean): SimulationSnapshotType[]
+    public exec(state: SimulationStateInterface, commands: SimulationCommandType[], registerWaitCommand?: boolean): SimulationSnapshotType[]
     {
         registerWaitCommand = registerWaitCommand ?? false;
 

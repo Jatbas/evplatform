@@ -26,10 +26,10 @@ export class CompanyResType
     updated_at!: Date | null;
 
     @Field(() => Boolean)
-    has_sub_companies!: Boolean;
+    has_sub_companies!: boolean;
 
     @Field(() => Boolean)
-    has_parent_company!: Boolean;
+    has_parent_company!: boolean;
 
 
     // Stations relation

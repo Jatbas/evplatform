@@ -8,8 +8,8 @@ export class CompanyResDto
     public readonly name: string;
     public readonly website: string | null;
     public readonly email: string | null;
-    public readonly has_sub_companies: Boolean;
-    public readonly has_parent_company: Boolean;
+    public readonly has_sub_companies: boolean;
+    public readonly has_parent_company: boolean;
     public readonly created_at: Date;
     public readonly updated_at: Date | null;
 

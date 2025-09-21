@@ -6,5 +6,5 @@ import { SimulationSnapshotType } from '@simulation/types/simulation-snapshot.ty
 
 export interface SimulationInterface
 {
-    exec(state: SimulationStateInterface, commands: SimulationCommandType[],  registerWaitCommand?: Boolean): SimulationSnapshotType[];
+    exec(state: SimulationStateInterface, commands: SimulationCommandType[],  registerWaitCommand?: boolean): SimulationSnapshotType[];
 }

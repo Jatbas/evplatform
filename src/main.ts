@@ -32,6 +32,10 @@ async function bootstrap()
     app.setGlobalPrefix('evplatform'); // Base route
 
 
+// Enable CORS
+app.enableCors({ origin: true });
+
+
     const port = config.get<number>('PORT', 3000);
 
     await app.listen(port);

@@ -22,7 +22,7 @@ export class Start implements SimulationCommandInterface
     /***/
 
 
-    public exec(state: SimulationStateInterface, command: SimulationCommandType, snapshots: SimulationSnapshotType[], registerWaitCommand: Boolean): SimulationCommandResType
+    public exec(state: SimulationStateInterface, command: SimulationCommandType, snapshots: SimulationSnapshotType[], registerWaitCommand: boolean): SimulationCommandResType
     {
         if (command.stationId === 'all')
         {

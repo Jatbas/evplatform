@@ -10,8 +10,8 @@ export class CompanyDto
     public readonly createdAt: Date;
     public readonly updatedAt: Date | null;
 
-    public hasSubCompanies: Boolean = false;
-    public hasParentCompany: Boolean = false;
+    public hasSubCompanies: boolean = false;
+    public hasParentCompany: boolean = false;
 
 
     constructor(company: Company)

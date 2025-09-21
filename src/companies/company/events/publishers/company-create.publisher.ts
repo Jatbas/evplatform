@@ -17,7 +17,7 @@ export class CompanyCreatePublisher implements CompanyCreatePublisherInterface
     /***/
 
 
-    public exec(company: CompanyDto): Boolean
+    public exec(company: CompanyDto): boolean
     {
         // Publish event
         return this.eventEmitter.emit('company.created', company);

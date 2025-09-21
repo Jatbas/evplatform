@@ -7,5 +7,5 @@ import { SimulationCommandResType } from '@simulation/types/simulation-command-r
 
 export interface SimulationCommandInterface
 {
-    exec(state: SimulationStateInterface, command: SimulationCommandType, snapshots: SimulationSnapshotType[], registerWaitCommand: Boolean): SimulationCommandResType;
+    exec(state: SimulationStateInterface, command: SimulationCommandType, snapshots: SimulationSnapshotType[], registerWaitCommand: boolean): SimulationCommandResType;
 }
