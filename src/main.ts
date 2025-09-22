@@ -32,8 +32,8 @@ async function bootstrap()
     app.setGlobalPrefix('evplatform'); // Base route
 
 
-// Enable CORS
-app.enableCors({ origin: true });
+    // Enable CORS - Since this is not production, it eases development of side projects
+    app.enableCors({ origin: true });
 
 
     const port = config.get<number>('PORT', 3000);
