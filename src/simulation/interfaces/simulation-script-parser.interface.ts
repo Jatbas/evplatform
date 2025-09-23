@@ -3,5 +3,5 @@ import { SimulationCommandType } from '@simulation/types/simulation-command.type
 
 export interface SimulationScriptParserInterface
 {
-    exec(script: string): SimulationCommandType[];
+    exec(script: string): Promise<SimulationCommandType[]>;
 }

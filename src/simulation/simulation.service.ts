@@ -37,7 +37,7 @@ export class SimulationService implements SimulationServiceInterface
     public async exec(dto: SimulationReqDto): Promise<SimulationSnapshotType[]>
     {
         // Parse script commands
-        const commands: SimulationCommandType[] = this.simulationScriptParser.exec(dto.script);
+        const commands: SimulationCommandType[] = await this.simulationScriptParser.exec(dto.script);
 
         if (!commands)
         {
