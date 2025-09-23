@@ -26,6 +26,7 @@ It allows for creating and managing companies, associating parent/child companie
 - **TypeORM**: All database access uses TypeORM with repository and entity patterns. Spatial (geo) data is handled via MySQL spatial types.
 - **GraphQL**: In addition to REST, the project supports GraphQL queries and mutations, including nested field resolvers for relations.
 - **Pub/Sub**: In-memory event bus used to decouple actions. For example, a `company.created` event can trigger logging and email subscribers independently.
+- **Worker Threads**: The simulation script parser runs in a separate **Node.js worker thread** to offload CPU-heavy string parsing from the main thread This improves responsiveness and showcases advanced usage of Node’s `worker_threads` module in a real-world scenario.
 - **Testing**: Both unit and e2e tests are present. Value objects, service logic, and selected endpoints are covered.
 
 ---
@@ -162,7 +163,7 @@ $ npm run test:e2e -- --detectOpenHandles --forceExit
   Add JWT or OAuth authentication to secure API endpoints and support role-based access control.
 
 - **Pub/Sub:**
-  Replace the in-memory event bus with a distributed Pub/Sub system (e.g., Redis, Kafka) for durability, scalability, and cross-service communication.
+  Replace the in-memory event bus with a distributed Pub/Sub system (e.g., Google, Redis, Kafka) for durability, scalability, and cross-service communication.
 
 
 ## Resources

@@ -1,102 +1,42 @@
 import { Injectable } from '@nestjs/common';
+import { join } from 'path';
+import { Worker } from 'worker_threads';
 
 import { SimulationScriptParserInterface } from '@simulation/interfaces/simulation-script-parser.interface';
 
-import { SimulationCommandTypeEnum } from '@simulation/parser/simulation-command-type.enum';
 import { SimulationCommandType } from '@simulation/types/simulation-command.type';
 
 
 @Injectable()
 export class SimulationScriptParser implements SimulationScriptParserInterface
 {
-    public exec(script: string): SimulationCommandType[]
+    public async exec(script: string): Promise<SimulationCommandType[]>
     {
-        const lines = script.split('\n');
-
-        const commands: SimulationCommandType[] = [];
-
-
-        lines.forEach((line, i) => {
-
-            const trimmed = line.trim();
-
-            if (!trimmed)
-            {
-                return;
-            }
+        // Set path to dist worker file
+        const workerPath = join(__dirname, 'simulation-script-parser.worker.js');
 
 
-            // Match each command
-            if (/^BEGIN$/i.test(trimmed))
-            {
-                commands.push({
-                    type: SimulationCommandTypeEnum.BEGIN,
-                    raw: line,
-                    line: i + 1
-                });
+        // Execute worker
+        const res: SimulationCommandType[] = await new Promise((resolve, reject) => {
 
-                return;
-            }
+            const worker = new Worker(workerPath, {
+
+                workerData: { script },
+            });
 
 
-            if (/^END$/i.test(trimmed))
-            {
-                commands.push({
-                    type: SimulationCommandTypeEnum.END,
-                    raw: line,
-                    line: i + 1
-                });
+            worker.on('message', resolve);
+            worker.on('error', reject);
+            worker.on('exit', code => {
 
-                return;
-            }
-
-
-            if (/^START STATION (.+)$/i.test(trimmed))
-            {
-                const [, target] = trimmed.match(/^Start station (.+)$/i)!;
-
-                commands.push({
-                    type: SimulationCommandTypeEnum.START,
-                    stationId: target.toLowerCase() === 'all' ? 'all' : Number(target),
-                    raw: line,
-                    line: i + 1
-                });
-
-                return;
-            }
-
-
-            if (/^STOP STATION (.+)$/i.test(trimmed))
-            {
-                const [, target] = trimmed.match(/^STOP STATION (.+)$/i)!;
-
-                commands.push({
-                    type: SimulationCommandTypeEnum.STOP,
-                    stationId: target.toLowerCase() === 'all' ? 'all' : Number(target),
-                    raw: line,
-                    line: i + 1
-                });
-
-                return;
-            }
-
-
-            if (/^WAIT (\d+)$/i.test(trimmed))
-            {
-                const [, seconds] = trimmed.match(/^WAIT (\d+)$/i)!;
-
-                commands.push({
-                    type: SimulationCommandTypeEnum.WAIT,
-                    waitSeconds: Number(seconds),
-                    raw: line,
-                    line: i + 1
-                });
-
-                return;
-            }
+                if (code !== 0)
+                {
+                    reject(new Error('Worker exited with code ' + code));
+                }
+            });
         });
 
 
-        return commands;
+        return res;
     }
 }
