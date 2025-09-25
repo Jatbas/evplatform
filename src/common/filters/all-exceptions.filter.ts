@@ -1,4 +1,4 @@
-import {ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
+import {ExceptionFilter, Catch, ArgumentsHost, HttpException, BadRequestException, HttpStatus } from '@nestjs/common';
 import { GraphQLError } from 'graphql';
 
 
@@ -11,7 +11,21 @@ export class AllExceptionsFilter implements ExceptionFilter
 
         const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        const message = ((exception instanceof HttpException) ? exception.getResponse() : 'Internal server error');
+        let message = 'Internal server error';
+
+        if (exception instanceof HttpException || exception instanceof BadRequestException)
+        {
+            const res = exception.getResponse() as any;
+
+            if (Array.isArray(res?.message))
+            {
+                message = res.message.join(', ');
+            }
+            else if (typeof res?.message === 'string')
+            {
+                message = res.message;
+            }
+        }
 
 
         if (contextType === 'graphql')

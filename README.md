@@ -127,7 +127,7 @@ In addition to the REST endpoints, this project also exposes a GraphQL API.
 ---
 
 
-### Compile and run the project
+## Compile and run the project
 
 ```bash
 # development
@@ -143,7 +143,7 @@ $ npm run start:debug
 $ npm run start:prod
 ```
 
-### Run tests
+## Run tests
 
 ```bash
 # unit tests
