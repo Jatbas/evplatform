@@ -11,6 +11,7 @@ export class AllExceptionsFilter implements ExceptionFilter
 
         const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
 
+
         let message = 'Internal server error';
 
         if (exception instanceof HttpException || exception instanceof BadRequestException)
@@ -38,13 +39,19 @@ export class AllExceptionsFilter implements ExceptionFilter
         }
 
 
+        if (Array.isArray(message))
+        {
+            message = message.join('; ');
+        }
+
+
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
 
         response.status(status).json({
 
             result: false,
-            error: ((typeof message === 'string') ? message : (message as any).message || message)
+            error: message
         });
     }
 }
