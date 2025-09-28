@@ -40,6 +40,8 @@ It allows for creating and managing companies, associating parent/child companie
 - `src/libs/` - Reusable libraries (e.g., hashids for ID encoding)
 - `src/stations/` - Stations and station types modules
 - `src/simulation/` - Simulation logic
+- `test/` - End-to-end (e2e) tests covering API endpoints
+- `test/` - Unit testing
 
 
 ---
