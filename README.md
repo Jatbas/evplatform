@@ -29,6 +29,7 @@ It allows for creating and managing companies, associating parent/child companie
 - **Worker Threads**: The simulation script parser runs in a separate **Node.js worker thread** to offload CPU-heavy string parsing from the main thread This improves responsiveness and showcases advanced usage of Node’s `worker_threads` module in a real-world scenario.
 - **Testing**: Both unit and e2e tests are present. Value objects, service logic, and selected endpoints are covered.
 
+
 ---
 
 
@@ -99,6 +100,7 @@ In addition to the REST endpoints, this project also exposes a GraphQL API.
 
 ---
 
+
 ## Installation
 
 ### 1. Install the Nest CLI (if needed)
@@ -154,6 +156,9 @@ $ npm run test:e2e -- --detectOpenHandles --forceExit
 ```
 
 
+---
+
+
 ## Improvements
 
 - **API Documentation (Swagger/OpenAPI):**
@@ -164,6 +169,9 @@ $ npm run test:e2e -- --detectOpenHandles --forceExit
 
 - **Pub/Sub:**
   Replace the in-memory event bus with a distributed Pub/Sub system (e.g., Google, Redis, Kafka) for durability, scalability, and cross-service communication.
+
+
+---
 
 
 ## Resources
